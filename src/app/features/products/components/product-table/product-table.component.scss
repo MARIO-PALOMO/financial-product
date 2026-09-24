@@ -92,3 +92,89 @@
     }
   }
 }
+
+
+
+.table-responsive-data{
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .table-data{
+    display: none;
+  }
+
+  .table-responsive-data{
+    display: table-row;
+  }
+
+   .financial-table {
+  
+    thead .table-responsive-data th {
+      padding: 1rem 1.5rem;
+    }
+
+    tbody {
+      .table-responsive-data {
+        border-bottom: none;
+
+        &:hover {
+          background-color: transparent;
+        }
+
+        td {
+          padding: 1.25rem 1rem;
+          vertical-align: top;
+        }
+      }
+      .table-responsive-data ~ .table-responsive-data {
+        border-top: 1px solid #d8d8d8;
+      }
+    }
+  }
+
+  .product-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+
+    &__avatar {
+      flex: 0 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+
+      img {
+        width: 32px;
+        height: auto;
+        object-fit: contain;
+      }
+    }
+
+    &__info {
+      flex: 1;
+      min-width: 0;
+      color: #334155;
+
+      p {
+        margin: 0 0 2px;
+        line-height: 1.4;
+      }
+
+      b {
+        font-weight: 600;
+        color: #1e293b;
+      }
+    }
+
+    &__actions {
+      flex: 0 0 auto;
+    }
+  }
+}

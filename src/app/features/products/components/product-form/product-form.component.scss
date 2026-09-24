@@ -1,3 +1,5 @@
+@use './../../../../../styles';
+
 .form-container {
   max-width: 900px;
   margin: 2rem auto;
@@ -101,27 +103,27 @@
     }
 
     .btn-reset {
-      background-color: #e2e8f0;
-      color: #334155;
+      background-color: styles.$color-secondary-base;
+      color: styles.$color-secondary-text;
       border: none;
 
       &:hover {
-        background-color: #cbd5e1;
+        background-color: styles.$color-secondary-hover;
       }
     }
 
     .btn-submit {
-      background-color: #facc15;
-      color: #1e293b;
+      background-color: styles.$color-base;
+      color: styles.$color-text;
       border: none;
 
       &:hover:not(:disabled) {
-        background-color: #eab308;
+        background-color: styles.$color-hover;
       }
 
       &:disabled {
-        background-color: #fef08a;
-        color: #94a3b8;
+        background-color: styles.$color-disabled;
+        color: styles.$color-disabled-text;
         cursor: not-allowed;
       }
     }

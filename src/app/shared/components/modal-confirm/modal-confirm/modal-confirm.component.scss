@@ -1,3 +1,5 @@
+@use './../../../../../styles';
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -77,23 +79,23 @@
       border: none;
       cursor: pointer;
       transition: all 0.2s ease;
+    }
 
-      &--secondary {
-        background-color: #eaedf1;
-        color: #4a5568;
+    .btn-secondary {
+      background-color: styles.$color-secondary-base;
+      color: styles.$color-secondary-text;
 
-        &:hover {
-          background-color: #e2e6eb;
-        }
+      &:hover {
+        background-color: styles.$color-secondary-hover;
       }
     }
 
     .btn-danger {
-      background-color: #facc15;
-        color: #1e293b;
+      background-color: styles.$color-base;
+      color: styles.$color-text;
 
       &:hover {
-        background-color: #eab308;
+        background-color: styles.$color-hover;
       }
     }
   }

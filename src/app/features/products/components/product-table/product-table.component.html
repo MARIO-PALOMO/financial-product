@@ -1,7 +1,7 @@
 <div class="table-responsive">
   <table class="financial-table">
     <thead>
-      <tr>
+      <tr class="table-data">
         <th>Logo</th>
         <th>Nombre del producto</th>
         <th>Descripción</th>
@@ -9,29 +9,51 @@
         <th>Fecha de reestructuración</th>
         <th></th>
       </tr>
+      <tr class="table-responsive-data">
+        <th>Productos Financieros</th>
+      </tr>
     </thead>
     <tbody>
       @for (product of pagedProducts(); track product.id) {
-        <tr>
-          <td>
-           <img [src]="product.logo" class="product-logo" >
-          </td>
-          <td>{{ product.name }}</td>
-          <td>{{ product.description }}</td>
-          <td>{{ product.date_release | date:'dd/MM/yyyy':'UTC' }}</td>
-          <td>{{ product.date_revision | date:'dd/MM/yyyy':'UTC' }}</td>
-          <td class="action-cell">
-        
-            <app-dropdown-menu 
-              [options]="tableActions" 
-              (optionSelected)="onActionSelected($event, product)">
-            </app-dropdown-menu>
-          </td>
-        </tr>
+      <tr class="table-data">
+        <td>
+          <img [src]="product.logo" class="product-logo">
+        </td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.date_release | date:'dd/MM/yyyy':'UTC' }}</td>
+        <td>{{ product.date_revision | date:'dd/MM/yyyy':'UTC' }}</td>
+        <td class="action-cell">
+
+          <app-dropdown-menu [options]="tableActions" (optionSelected)="onActionSelected($event, product)">
+          </app-dropdown-menu>
+        </td>
+      </tr>
+      <tr class="table-responsive-data">
+        <td>
+          <div class="product-card">
+            <span class="product-card__avatar">
+              <img [src]="product.logo" alt="">
+            </span>
+
+            <div class="product-card__info">
+              <p><b>Nombre:</b> {{ product.name }}</p>
+              <p><b>Descripción:</b> {{ product.description }}</p>
+              <p><b>Fecha de liberación:</b> {{ product.date_release | date:'dd/MM/yyyy':'UTC' }}</p>
+              <p><b>Fecha de reestructuración:</b> {{ product.date_revision | date:'dd/MM/yyyy':'UTC' }}</p>
+            </div>
+
+            <div class="product-card__actions">
+              <app-dropdown-menu [options]="tableActions" (optionSelected)="onActionSelected($event, product)">
+              </app-dropdown-menu>
+            </div>
+          </div>
+        </td>
+      </tr>
       } @empty {
-        <tr>
-          <td colspan="6" class="empty-state">No se encontraron productos financieros.</td>
-        </tr>
+      <tr>
+        <td colspan="6" class="empty-state">No se encontraron productos financieros.</td>
+      </tr>
       }
     </tbody>
   </table>
@@ -40,7 +62,7 @@
     <span class="record-count">
       {{ totalRecords() }} Resultados
     </span>
-    
+
     <div class="page-size-selector">
       <select (change)="onPageSizeChange($event)" [value]="pageSize()">
         <option [value]="5">5</option>
