@@ -1,0 +1,24 @@
+<app-header></app-header>
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Buscar..." [value]="searchTerm()"
+        (input)="onSearchChanged($event)" />
+    </div>
+    <button class="add-btn" (click)="onAddProduct()">Agregar</button>
+  </div>
+
+  @if (isLoading()) {
+  <div class="loading-state">Cargando productos financieros...</div>
+  } @else {
+
+  <app-product-table [products]="displayProducts()" (editRequested)="onEditProduct($event)"
+    (deleteRequested)="openDeleteModal($event)">
+  </app-product-table>
+  }
+
+  <app-modal-confirm [isOpen]="isModalOpen()" [message]="'¿Estás seguro de eliminar el producto: ' + (infoProduct?.name || '') + '?'"
+    (confirmed)="confirmDelete()" (canceled)="closeModal()">
+  </app-modal-confirm>
+
+</div>

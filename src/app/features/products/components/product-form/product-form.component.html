@@ -1,0 +1,79 @@
+<app-header></app-header>
+<div class="form-container">
+  <div style="text-align: center !important;">
+    <h2>Formulario de Registro</h2>
+  </div>
+  <hr class="divider" />
+
+  @if (errorMessage()) {
+    <div class="alert-error">{{ errorMessage() }}</div>
+  }
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="financial-form">
+    <div class="form-grid">
+      
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input id="id" type="text" formControlName="id" [class.error-border]="productForm.get('id')?.invalid && productForm.get('id')?.touched" />
+        @if (productForm.get('id')?.invalid && productForm.get('id')?.touched) {
+          <small class="error-text">
+            @if (productForm.get('id')?.errors?.['required']) { El ID es requerido. }
+            @if (productForm.get('id')?.errors?.['minlength'] || productForm.get('id')?.errors?.['maxlength']) { Debe tener entre 3 y 10 caracteres. }
+          </small>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input id="name" type="text" formControlName="name" [class.error-border]="productForm.get('name')?.invalid && productForm.get('name')?.touched" />
+        @if (productForm.get('name')?.invalid && productForm.get('name')?.touched) {
+          <small class="error-text">
+            @if (productForm.get('name')?.errors?.['required']) { El nombre es requerido. }
+            @if (productForm.get('name')?.errors?.['minlength']) { Mínimo 5 caracteres. }
+          </small>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="description">Descripción</label>
+        <input id="description" type="text" formControlName="description" [class.error-border]="productForm.get('description')?.invalid && productForm.get('description')?.touched" />
+        @if (productForm.get('description')?.invalid && productForm.get('description')?.touched) {
+          <small class="error-text">
+            @if (productForm.get('description')?.errors?.['required']) { La descripción es requerida. }
+            @if (productForm.get('description')?.errors?.['minlength']) { Mínimo 10 caracteres. }
+          </small>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="logo">Logo (Ruta de imagen)</label>
+        <input id="logo" type="text" formControlName="logo" [class.error-border]="productForm.get('logo')?.invalid && productForm.get('logo')?.touched" />
+        @if (productForm.get('logo')?.invalid && productForm.get('logo')?.touched) {
+          <small class="error-text">Este campo es requerido.</small>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="date_release">Fecha Liberación</label>
+        <input id="date_release" type="date" formControlName="date_release" [class.error-border]="productForm.get('date_release')?.invalid && productForm.get('date_release')?.touched" />
+        @if (productForm.get('date_release')?.invalid && productForm.get('date_release')?.touched) {
+          <small class="error-text">
+            @if (productForm.get('date_release')?.errors?.['required']) { La fecha es requerida. }
+            @if (productForm.get('date_release')?.errors?.['invalidReleaseDate']) { La fecha debe ser igual o mayor a la de hoy. }
+          </small>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="date_revision">Fecha Revisión</label>
+        <input id="date_revision" type="date" formControlName="date_revision" class="disabled-input" />
+      </div>
+
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-reset" (click)="onReset()">Reiniciar</button>
+      <button type="submit" class="btn-submit" [disabled]="isLoading()">Enviar</button>
+    </div>
+  </form>
+</div>
